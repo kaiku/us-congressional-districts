@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoidGhlcW9mbGlmZSIsImEiOiJjaWxyY3N0MDEwOG5udHJrbmxoNWM4dDBwIn0.rxKZ4kLVzCzY-IwGQAeMcg';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/theqoflife/cilrpjhm10073a7ltdlg7qtdl',
+    center: [-120.76, 37.19],
+    zoom: 5
+});
+
+var caDistricts = {
+    type: 'FeatureCollection',
+    features: [
+        {
+            type: 'Feature',
+            properties: {
+                title: '1',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-121.26537, 40.77547]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '2',
+                delegates: {
+                    males: 4,
+                    females: 4
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-123.59447, 40.41676]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '3',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-121.91356, 38.99691]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '4',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-120.04589, 38.01685]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '5',
+                delegates: {
+                    males: 3,
+                    females: 4
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-122.40794, 38.54834]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '6',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-121.48105, 38.59238]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '7',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-121.20906, 38.49887]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '8',
+                delegates: {
+                    males: 3,
+                    females: 2
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-116.50700, 35.50677]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '9',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-121.29833, 38.06012]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '10',
+                delegates: {
+                    males: 2,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-121.12255, 37.60023]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '11',
+                delegates: {
+                    males: 4,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-121.99758, 37.93303]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '12',
+                delegates: {
+                    males: 4,
+                    females: 5
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-122.44527, 37.77906]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '13',
+                delegates: {
+                    males: 4,
+                    females: 4
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-122.24041, 37.81318]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '14',
+                delegates: {
+                    males: 4,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-122.38323, 37.53274]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '15',
+                delegates: {
+                    males: 3,
+                    females: 4
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-121.81743, 37.66548]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '16',
+                delegates: {
+                    males: 3,
+                    females: 2
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-120.55950, 37.24905]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '17',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-121.96612, 37.46588]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '18',
+                delegates: {
+                    males: 4,
+                    females: 4
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-122.12294, 37.21652]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '19',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-121.62110, 37.25397]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '20',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-121.25988, 36.43137]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '21',
+                delegates: {
+                    males: 2,
+                    females: 2
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-119.94701, 36.15243]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '22',
+                delegates: {
+                    males: 2,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-119.34826, 36.49322]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '23',
+                delegates: {
+                    males: 3,
+                    females: 2
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.35154, 35.64910]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '24',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-120.10562, 35.06864]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '25',
+                delegates: {
+                    males: 2,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.51261, 34.63589]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '26',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-119.05014, 34.31752]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '27',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.94052, 34.32433]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '28',
+                delegates: {
+                    males: 4,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.28659, 34.22446]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '29',
+                delegates: {
+                    males: 2,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.43765, 34.25852]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '30',
+                delegates: {
+                    males: 4,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.57772, 34.21765]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '31',
+                delegates: {
+                    males: 2,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.35275, 34.16540]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '32',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.93228, 34.09492]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '33',
+                delegates: {
+                    males: 4,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.66985, 34.10120]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '34',
+                delegates: {
+                    males: 2,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.22216, 34.06252]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '35',
+                delegates: {
+                    males: 3,
+                    females: 2
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.64263, 34.04204]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '36',
+                delegates: {
+                    males: 2,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-115.70894, 33.78448]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '37',
+                delegates: {
+                    males: 4,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.36498, 34.02663]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '38',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.05187, 33.95604]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '39',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.84475, 33.95001]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '40',
+                delegates: {
+                    males: 2,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.18807, 33.99556]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '41',
+                delegates: {
+                    males: 3,
+                    females: 2
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.31539, 33.95973]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '42',
+                delegates: {
+                    males: 2,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.18135, 33.63791]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '43',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.32805, 33.91529]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '44',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.23741, 33.87084]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '45',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.67597, 33.71667]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '46',
+                delegates: {
+                    males: 3,
+                    females: 2
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.89131, 33.81165]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '47',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-118.12889, 33.80822]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '48',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.92290, 33.66204]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '49',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.34588, 33.29309]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '50',
+                delegates: {
+                    males: 2,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-116.59620, 33.13825]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '51',
+                delegates: {
+                    males: 3,
+                    females: 2
+                },
+                alternates: {
+                    males: 0,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-115.32522, 33.07652]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '52',
+                delegates: {
+                    males: 3,
+                    females: 3
+                },
+                alternates: {
+                    males: 0,
+                    females: 1
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.11456, 32.91617]
+            }
+        },
+        {
+            type: 'Feature',
+            properties: {
+                title: '53',
+                delegates: {
+                    males: 3,
+                    females: 4
+                },
+                alternates: {
+                    males: 1,
+                    females: 0
+                },
+                'marker-symbol': 'town-hall'
+            },
+            geometry: {
+                type: 'Point',
+                coordinates: [-117.00882, 32.73268]
+            }
+        }
+    ]
+};
+
+map.addControl(new mapboxgl.Navigation({
+    position: 'top-left'
+}));
+
+map.on('style.load', function() {
+    map.addSource('caDistricts', {
+        type: 'geojson',
+        data: caDistricts
+    });
+
+    map.addLayer({
+        id: 'caDistricts',
+        interactive: true,
+        type: 'symbol',
+        source: 'caDistricts',
+        layout: {
+            'icon-image': '{marker-symbol}-15',
+            'text-field': '{title}',
+            'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+            'text-offset': [0, 0.65],
+            'text-anchor': 'top',
+            'text-size': 12,
+            'icon-allow-overlap': true
+        }
+    });
+
+    // Fit bounds
+    var bounds = new mapboxgl.LngLatBounds();
+
+    caDistricts.features.forEach(function(feature) {
+        bounds.extend(feature.geometry.coordinates);
+    });
+
+    map.fitBounds(bounds, {padding: 100});
+});
+
+var popup = new mapboxgl.Popup();
+
+map.on('click', function(e) {
+    map.featuresAt(e.point, {
+        radius: 7.5, // Half the marker size (15px).
+        includeGeometry: true,
+        layer: 'caDistricts'
+    }, function(err, features) {
+        if (err || !features.length) {
+            popup.remove();
+            return;
+        }
+
+        var feature = features[0];
+        var description = buildDescription(feature);
+
+        // Populate the popup and set its coordinates
+        // based on the feature found.
+        popup
+            .setLngLat(feature.geometry.coordinates)
+            .setHTML(description)
+            .addTo(map);
+    });
+
+    function buildDescription(feature) {
+        var props = feature.properties;
+        var title = props.title;
+        var delMales = _.parseInt(_.get(props, 'delegates.males', 0));
+        var delFemales = _.parseInt(_.get(props, 'delegates.females', 0));
+        var delTotal = delMales + delFemales;
+        var altMales = _.parseInt(_.get(props, 'alternates.males', 0));
+        var altFemales = _.parseInt(_.get(props, 'alternates.females', 0));
+        var altTotal = altMales + altFemales;
+
+        var html = [
+            '<div class="maker-title"><strong>District ' + title + '</strong></div>',
+            'Delegates: ' + delTotal,
+            ' <small>(' + delMales + ' male, ' + delFemales + ' female)</small>'
+        ];
+
+        if (altTotal) {
+            html = _.concat(html, [
+                '<br>',
+                'Alternates: ' + altTotal,
+                ' <small>(' + altMales + ' male, ' + altFemales + ' female)</small>',
+            ]);
+        }
+
+        return html.join('');
+    }
+
+    function lngLatToString(lngLat, precision) {
+        var lng = lngLat.lng;
+        var lat = lngLat.lat;
+        var point = [lng.toFixed(precision), lat.toFixed(precision)];
+        return point.toString();
+    }
+});
+
+// Use the same approach as above to indicate that the symbols are clickable
+// by changing the cursor style to 'pointer'.
+map.on('mousemove', function (e) {
+    map.featuresAt(e.point, {
+        radius: 9,
+        layer: 'caDistricts'
+    }, function(err, features) {
+        map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
+    });
+});
+
+</script>
+
+</body>
+</html>
